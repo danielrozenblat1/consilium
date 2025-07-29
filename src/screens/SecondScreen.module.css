@@ -1,0 +1,2305 @@
+/* הוספתי שיפורים לאפקט הזכוכית - כהה יותר, שקוף יותר ומטושטש יותר */
+
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 50px;
+}
+
+* {
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+}
+
+/* Custom smooth scrolling */
+.container {
+  scroll-behavior: smooth;
+}
+
+.container * {
+  scroll-behavior: smooth;
+}
+
+/* Override any existing scroll behavior */
+body {
+  scroll-behavior: smooth;
+}
+
+.container {
+  font-family: 'HeeboR', 'Arial', sans-serif;
+  overflow-x: hidden;
+  background: #0a0a0a;
+  color: #1a1a1a;
+  line-height: 1.6;
+  direction: rtl;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.container.loaded {
+  opacity: 1;
+}
+
+/* Hero Section - Dark elegant with Netflix grid */
+.heroSection {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  background: linear-gradient(135deg,#1a1a1a  0%, #0a0a0a 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2rem 0;
+}
+
+/* Hero Content - Clean and minimal */
+.heroContent {
+  position: relative;
+  z-index: 10;
+  max-width: 1400px;
+  padding: 3rem;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heroTitle {
+  font-size: 4rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  color: #ffffff;
+  font-family: 'HeeboR', sans-serif;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.heroSubtitle {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #cccccc;
+  margin-bottom: 2rem;
+  font-family: 'HeeboR', sans-serif;
+  opacity: 0.8;
+  animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Netflix-style thumbnails grid */
+.netflixGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 2rem;
+}
+
+.netflixThumbnail {
+  position: relative;
+  height: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  transform: scale(1);
+  opacity: 0;
+  animation: thumbnailFadeIn 0.8s ease-out forwards;
+}
+
+.netflixThumbnail:nth-child(1) { animation-delay: 0.1s; }
+.netflixThumbnail:nth-child(2) { animation-delay: 0.2s; }
+.netflixThumbnail:nth-child(3) { animation-delay: 0.3s; }
+.netflixThumbnail:nth-child(4) { animation-delay: 0.4s; }
+.netflixThumbnail:nth-child(5) { animation-delay: 0.5s; }
+.netflixThumbnail:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes thumbnailFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.netflixThumbnail:hover {
+  transform: scale(1.05) translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.3);
+  z-index: 10;
+}
+
+.thumbnailImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  filter: brightness(0.8) contrast(1.1);
+}
+
+.netflixThumbnail:hover .thumbnailImage {
+  transform: scale(1.1);
+  filter: brightness(1) contrast(1.2);
+}
+
+.thumbnailOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  padding: 2rem 1.5rem 1.5rem;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.netflixThumbnail:hover .thumbnailOverlay {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.thumbnailTitle {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #ffffff;
+  margin: 0 0 0.5rem 0;
+  font-family: 'HeeboR', sans-serif;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.thumbnailCategory {
+  font-size: 0.8rem;
+  color: #cccccc;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'HeeboR', sans-serif;
+  opacity: 0.9;
+}
+
+/* Project Gallery */
+.projectGallery {
+  position: relative;
+  padding: 0;
+}
+
+.projectSection {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.projectImageContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Fixed image proportions and super smooth parallax */
+.projectImage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate3d(-50%, -50%, 0) scale(1.1);
+  object-fit: cover;
+  object-position: center center;
+  will-change: transform;
+  /* Removed all transitions for smooth parallax */
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 300;
+  /* Hardware acceleration */
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+/* Remove transition classes to prevent jerky motion */
+.projectSection.inView .projectImage,
+.projectSection.aboveView .projectImage,
+.projectSection.belowView .projectImage {
+  /* No transitions - smooth parallax controlled by JS */
+}
+
+/* Navigation Dots - HIDDEN */
+.navDots {
+  display: none !important;
+}
+
+/* Portfolio Grid - Dark theme */
+.portfolioGrid {
+  position: relative;
+  background: #0a0a0a;
+  padding: 5rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.portfolioContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.portfolioTitle {
+  text-align: center;
+  font-size: 3.5rem;
+  font-weight: 300;
+  margin-bottom: 3rem;
+  color: #ffffff;
+  font-family: 'HeeboR', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.portfolioItems {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.portfolioItem {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+.portfolioItem:hover {
+  transform: translateY(-10px);
+}
+
+.portfolioItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  filter: contrast(1.05) brightness(1.05) saturate(1.1);
+}
+
+.portfolioItem:hover img {
+  transform: scale(1.1);
+}
+
+.portfolioItemOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+.portfolioItem:hover .portfolioItemOverlay {
+  opacity: 1;
+}
+
+.portfolioItemInfo {
+  text-align: center;
+}
+
+.portfolioItemInfo h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+  font-weight: 500;
+  font-family: "Amsterdam";
+}
+
+.portfolioItemInfo p {
+  font-size: 0.9rem;
+  color: #cccccc;
+  font-family: 'HeeboR', sans-serif;
+  margin-bottom: 1rem;
+}
+
+/* Enhanced Button Styles for Portfolio - More Transparent */
+.portfolioItemButton {
+  background: rgba(0, 0, 0, 0.15);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  font-family: 'HeeboR', sans-serif;
+  backdrop-filter: blur(30px);
+  opacity: 0.8;
+}
+
+.portfolioItemButton:hover {
+  background: rgba(0, 0, 0, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.2);
+  opacity: 1;
+}
+
+/* Scroll Progress - HIDDEN */
+.scrollProgress {
+  display: none !important;
+}
+
+/* חלון זכוכית מעודכן - פחות blur לפי הבקשה */
+.projectContent {
+  position: relative;
+  z-index: 10;
+  max-width: 500px;
+  padding: 3rem;
+  margin: 0 4rem;
+  /* רקע כהה יותר ושקוף יותר */
+  background: rgba(0, 0, 0, 0.05);
+  /* טשטוש מופחת לפי הבקשה */
+  backdrop-filter: blur(5px);
+  border-radius: 20px;
+  /* מסגרת בהירה יותר לקונטרסט */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+  transform: translateY(80px);
+  opacity: 0;
+  transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+}
+
+.projectContent::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 20px;
+  /* שכבה נוספת של כהות ושקיפות */
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 100%);
+  z-index: -1;
+}
+
+.projectContent.animate {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.projectCategory {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  font-family: 'HeeboR', sans-serif;
+  opacity: 0.9;
+}
+
+.projectTitle {
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+  font-family: 'Amsterdam';
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  animation: titleSlide 0.8s ease-out 0.3s both;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes titleSlide {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.projectDescription {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #f0f0f0;
+  margin-bottom: 2rem;
+  font-family: 'HeeboR', sans-serif;
+  font-weight: 400;
+  animation: fadeIn 0.8s ease-out 0.5s both;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.projectDetails {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  animation: slideUp 0.8s ease-out 0.7s both;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.projectDetail {
+  display: flex;
+  flex-direction: column;
+}
+
+.projectDetailLabel {
+  font-size: 0.7rem;
+  color: #bbbbbb;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+  font-family: 'HeeboR', sans-serif;
+}
+
+.projectDetailValue {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #ffffff;
+  font-family: 'HeeboR', sans-serif;
+}
+
+/* Gallery Button - Enhanced glass effect כהה יותר */
+.galleryButton {
+  background: rgba(0, 0, 0, 0.15);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 12px 24px;
+  border-radius: 12px;
+
+  font-size: 0.9rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  font-family: 'HeeboR', sans-serif;
+  backdrop-filter: blur(30px);
+  opacity: 0.8;
+}
+
+.galleryButton:hover {
+  background: rgba(0, 0, 0, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.2);
+  opacity: 1;
+}
+
+/* Gallery Modal */
+.galleryModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s ease;
+}
+
+.galleryModal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.galleryContainer {
+  position: relative;
+  width: 90%;
+  max-width: 1200px;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+/* Enhanced Gallery Image with Smooth Transitions */
+.galleryImage {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Image transition states */
+.galleryImage.transitioning {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.galleryImage.entering {
+  opacity: 0;
+  transform: scale(1.05);
+}
+
+/* Enhanced Navigation Arrows - More Elegant and Subtle */
+.galleryNav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  /* More transparent background */
+  background: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+    z-index: 999;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.2rem;
+  font-weight: 200;
+  /* More subtle appearance */
+  opacity: 0.6;
+}
+
+/* Custom thin arrow icons */
+.galleryNav.prev::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  border-left: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  margin-right: 2px;
+}
+
+.galleryNav.next::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(-45deg);
+  margin-left: 2px;
+}
+
+.galleryNav:hover {
+  background: rgba(0, 0, 0, 0.25);
+  transform: translateY(-50%) scale(1.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.9);
+  opacity: 1;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.galleryNav.prev {
+  left: 20px;
+}
+
+.galleryNav.next {
+  right: 20px;
+}
+
+/* Enhanced Close Button - Always Visible */
+.galleryClose {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.2rem;
+  font-weight: 200;
+  opacity: 1;
+  z-index: 1002;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.galleryClose:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.08);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* Enhanced Gallery Thumbnails */
+.galleryThumbnails {
+  position: absolute;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  max-width: 90%;
+  overflow-x: auto;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  scroll-behavior: smooth;
+}
+
+.galleryThumbnail {
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  transform: scale(0.95);
+}
+
+.galleryThumbnail.active {
+  opacity: 1;
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: scale(1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.galleryThumbnail:hover {
+  opacity: 0.8;
+  transform: scale(1.02);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Gallery Button Container - מיקום הכפתור מתחת לתמונות הזעירות עם מרחק */
+.galleryButtonContainer {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1003;
+}
+
+/* Enhanced Gallery Info */
+.galleryInfo {
+  position: absolute;
+  bottom: 100px;
+  left: 30px;
+  color: white;
+  font-family: 'HeeboR', sans-serif;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  padding: 15px 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  opacity: 0.9;
+}
+
+.galleryCounter {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  margin-bottom: 5px;
+  font-weight: 300;
+}
+
+.galleryProjectTitle {
+  font-size: 1.2rem;
+  font-family: "Amsterdam";
+  font-weight: 500;
+}
+
+/* Performance Optimizations - ENHANCED FOR SMOOTH PARALLAX */
+.projectImage {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  /* Use GPU acceleration */
+  transform-style: preserve-3d;
+  /* Smooth rendering */
+  image-rendering: auto;
+  image-rendering: crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* Custom Scrollbar - Dark */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e0e0e0;
+}
+
+/* Thumbnail Scrollbar */
+.galleryThumbnails::-webkit-scrollbar {
+  height: 4px;
+}
+
+.galleryThumbnails::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+.galleryThumbnails::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+}
+
+.galleryThumbnails::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Loading Animation */
+.container {
+  animation: pageLoad 1.5s ease-out;
+}
+
+@keyframes pageLoad {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Enhanced Intersection Observer Animations */
+.animate .projectTitle {
+  animation: titleSlideIn 0.8s cubic-bezier(0.23, 1, 0.32, 1) 0.2s both;
+}
+
+.animate .projectDescription {
+  animation: fadeInSlide 0.8s cubic-bezier(0.23, 1, 0.32, 1) 0.4s both;
+}
+
+.animate .projectDetails {
+  animation: slideUpFade 0.8s cubic-bezier(0.23, 1, 0.32, 1) 0.6s both;
+}
+
+@keyframes titleSlideIn {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInSlide {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideUpFade {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Additional enhanced animations for glass effect */
+.projectContent.animate {
+  animation: glassAppear 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@keyframes glassAppear {
+  0% {
+    transform: translateY(80px) scale(0.9);
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  50% {
+    backdrop-filter: blur(7px);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    backdrop-filter: blur(5px);
+  }
+}
+
+/* Enhanced parallax movement - REMOVED TRANSITIONS */
+.projectSection {
+  will-change: transform;
+}
+
+/* Smooth transitions for all interactive elements EXCEPT parallax images */
+* {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* REMOVE transitions from parallax elements */
+.projectImage,
+.projectImageContainer,
+.projectSection.inView .projectImage,
+.projectSection.aboveView .projectImage,
+.projectSection.belowView .projectImage {
+  transition: none !important;
+}
+
+/* Focus states for accessibility */
+.galleryButton:focus,
+.galleryNav:focus,
+.galleryClose:focus,
+.portfolioItemButton:focus,
+.galleryThumbnail:focus,
+.netflixThumbnail:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.4);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .projectOverlay {
+    background: rgba(0, 0, 0, 0.9);
+  }
+  
+  .projectContent {
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .netflixThumbnail {
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .projectImage {
+    transform: translate3d(-50%, -50%, 0) scale(1.05) !important;
+  }
+  
+  .netflixThumbnail {
+    animation: none !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .galleryModal,
+  .netflixGrid {
+    display: none !important;
+  }
+  
+  .container {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .projectContent {
+    background: white !important;
+    box-shadow: none !important;
+    border: 1px solid black !important;
+  }
+  
+  .heroSection {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .heroTitle,
+  .heroSubtitle {
+    color: black !important;
+  }
+}
+
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+
+/* מתחת ל-350px - מסכים קטנים מאוד */
+@media (max-width: 349px) {
+  .heroTitle {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .heroContent {
+    padding: 1.5rem 0.5rem;
+  }
+  
+  .netflixGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0 0.5rem;
+  }
+  
+  .netflixThumbnail {
+    height: 120px;
+  }
+  
+  .thumbnailOverlay {
+    padding: 1rem 0.8rem 0.8rem;
+  }
+  
+  .thumbnailTitle {
+    font-size: 0.9rem;
+  }
+  
+  .thumbnailCategory {
+    font-size: 0.6rem;
+  }
+  
+  .projectContent {
+    padding: 1.5rem 1rem;
+    margin: 0 0.5rem;
+    border-radius: 12px;
+  }
+  
+  .projectTitle {
+    font-size: 1.5rem;
+  }
+  
+  .projectDescription {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  
+  .projectDetails {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .galleryButton {
+    padding: 10px 18px;
+    font-size: 0.8rem;
+  }
+  
+  .galleryNav {
+    width: 40px;
+    height: 40px;
+    font-size: 0.9rem;
+  }
+  
+  .galleryNav.prev {
+    left: 10px;
+  }
+  
+  .galleryNav.next {
+    right: 10px;
+  }
+  
+  .galleryClose {
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+  
+  .galleryThumbnails {
+    bottom: 50px;
+    gap: 6px;
+    padding: 8px;
+  }
+  
+  .galleryThumbnail {
+    width: 50px;
+    height: 35px;
+  }
+  
+  .galleryButtonContainer {
+    bottom: -30px;
+  }
+  
+  .galleryInfo {
+    bottom: 100px;
+    left: 30px;
+    padding: 15px 20px;
+  }
+  
+  .galleryCounter {
+    font-size: 0.9rem;
+  }
+  
+  .galleryProjectTitle {
+    font-size: 1.2rem;
+  }
+}
+
+/* מעל 1250px - מסכים גדולים מאוד */
+@media (min-width: 1251px) {
+  .heroTitle {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .heroContent {
+    padding: 3rem;
+  }
+  
+  .netflixGrid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 0 2rem;
+    max-width: 1200px;
+  }
+  
+  .netflixThumbnail {
+    height: 200px;
+  }
+  
+  .thumbnailOverlay {
+    padding: 2rem 1.5rem 1.5rem;
+  }
+  
+  .thumbnailTitle {
+    font-size: 1.1rem;
+  }
+  
+  .thumbnailCategory {
+    font-size: 0.8rem;
+  }
+  
+  .projectContent {
+    max-width: 500px;
+    padding: 3rem;
+    margin: 0 4rem;
+    border-radius: 20px;
+  }
+  
+  .projectTitle {
+    font-size: 2.5rem;
+  }
+  
+  .projectDescription {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .projectDetails {
+    flex-direction: row;
+    gap: 2rem;
+  }
+  
+  .galleryButton {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+  }
+  
+  .galleryNav {
+    width: 60px;
+    height: 60px;
+    font-size: 1.2rem;
+  }
+  
+  .galleryNav.prev {
+    left: 20px;
+  }
+  
+  .galleryNav.next {
+    right: 20px;
+  }
+  
+  .galleryClose {
+    top: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+  
+  .galleryThumbnails {
+    bottom: 70px;
+    gap: 10px;
+    padding: 10px;
+  }
+  
+  .galleryThumbnail {
+    width: 80px;
+    height: 60px;
+  }
+  
+  .galleryButtonContainer {
+    bottom: -25px;
+  }
+  
+  .galleryInfo {
+    bottom: 130px;
+    left: 30px;
+    padding: 15px 20px;
+  }
+  
+  .galleryCounter {
+    font-size: 0.9rem;
+  }
+  
+  .galleryProjectTitle {
+    font-size: 1.2rem;
+  }
+}
+
+/* 1150px-1250px - מחשבים גדולים */
+@media (min-width: 1150px) and (max-width: 1250px) {
+  .heroTitle {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .heroContent {
+    padding: 3rem;
+  }
+  
+  .netflixGrid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 0 2rem;
+  }
+  
+  .netflixThumbnail {
+    height: 200px;
+  }
+  
+  .thumbnailOverlay {
+    padding: 2rem 1.5rem 1.5rem;
+  }
+  
+  .thumbnailTitle {
+    font-size: 1.1rem;
+  }
+  
+  .thumbnailCategory {
+    font-size: 0.8rem;
+  }
+  
+  .projectContent {
+    max-width: 500px;
+    padding: 3rem;
+    margin: 0 4rem;
+    border-radius: 20px;
+  }
+  
+  .projectTitle {
+    font-size: 2.5rem;
+  }
+  
+  .projectDescription {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .projectDetails {
+    flex-direction: row;
+    gap: 2rem;
+  }
+  
+  .galleryButton {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+  }
+  
+  .galleryNav {
+    width: 60px;
+    height: 60px;
+    font-size: 1.2rem;
+  }
+  
+  .galleryNav.prev {
+    left: 20px;
+  }
+  
+  .galleryNav.next {
+    right: 20px;
+  }
+  
+  .galleryClose {
+    top: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+  
+  .galleryThumbnails {
+    bottom: 70px;
+    gap: 10px;
+    padding: 10px;
+  }
+  
+  .galleryThumbnail {
+    width: 80px;
+    height: 60px;
+  }
+  
+  .galleryButtonContainer {
+    bottom: -25px;
+  }
+  
+  .galleryInfo {
+    bottom: 130px;
+    left: 30px;
+    padding: 15px 20px;
+  }
+  
+  .galleryCounter {
+    font-size: 0.9rem;
+  }
+  
+  .galleryProjectTitle {
+    font-size: 1.2rem;
+  }
+}
+  
+  .galleryNav {
+    width: 60px;
+    height: 60px;
+    font-size: 1.2rem;
+  }
+  
+  .galleryNav.prev {
+    left: 20px;
+  }
+  
+  .galleryNav.next {
+    right: 20px;
+  }
+  
+  .galleryClose {
+    top: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+  
+  .galleryThumbnails {
+    bottom: 70px;
+    gap: 10px;
+    padding: 10px;
+    max-width: 90%;
+  }
+  
+  .galleryThumbnail {
+    width: 80px;
+    height: 60px;
+  }
+  
+  .galleryButtonContainer {
+    bottom: -20px;
+  }
+  
+  .galleryInfo {
+    bottom: 100px;
+    left: 30px;
+    padding: 15px 20px;
+  }
+  
+  .galleryCounter {
+    font-size: 0.9rem;
+  }
+  
+  .galleryProjectTitle {
+    font-size: 1.2rem;
+  }
+  
+  .portfolioTitle {
+    font-size: 3.5rem;
+  }
+  
+  .portfolioItems {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+   
+  
+  .galleryCounter {
+    font-size: 0.8rem;
+  }
+  
+  .galleryProjectTitle {
+    font-size: 1rem;
+  }
+
+
+/* 350px-450px - טלפונים קטנים */
+@media (min-width: 350px) and (max-width: 449px) {
+  .heroTitle {
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1rem;
+    margin-bottom: 1.8rem;
+  }
+  
+  .heroContent {
+    padding: 2rem 1rem;
+  }
+  
+  .netflixGrid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+    padding: 0 1rem;
+  }
+  
+  .netflixThumbnail {
+    height: 140px;
+  }
+  
+  .thumbnailOverlay {
+    padding: 1.2rem 1rem 1rem;
+    transform: translateY(0);
+    opacity: 1;
+    background: linear-gradient(transparent 20%, rgba(0, 0, 0, 0.9));
+  }
+  
+  .netflixThumbnail:hover .thumbnailOverlay {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+  .thumbnailTitle {
+    font-size: 1rem;
+  }
+  
+  .thumbnailCategory {
+    font-size: 0.7rem;
+  }
+  
+  .projectContent {
+    padding: 2rem 1.5rem;
+    margin: 0 1rem;
+    border-radius: 16px;
+  }
+  
+  .projectTitle {
+    font-size: 1.8rem;
+  }
+  
+  .projectDescription {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  
+  .projectDetails {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .galleryButton {
+    padding: 11px 20px;
+    font-size: 0.85rem;
+  }
+  
+  .galleryNav {
+    width: 42px;
+    height: 42px;
+    font-size: 1rem;
+  }
+  
+  .galleryNav.prev {
+    left: 12px;
+  }
+  
+  .galleryNav.next {
+    right: 12px;
+  }
+  
+  .galleryClose {
+    top: 18px;
+    right: 18px;
+    width: 42px;
+    height: 42px;
+    font-size: 1.1rem;
+  }
+  
+  .galleryThumbnails {
+    bottom: 55px;
+    gap: 7px;
+    padding: 9px;
+  }
+  
+  .galleryThumbnail {
+    width: 55px;
+    height: 40px;
+  }
+  
+  .galleryButtonContainer {
+    bottom: -25px;
+  }
+  
+  .galleryInfo {
+    bottom: 115px;
+    left: 18px;
+    padding: 11px 15px;
+  }
+  
+  .galleryCounter {
+    font-size: 0.85rem;
+  }
+  
+  .galleryProjectTitle {
+    font-size: 1.1rem;
+  }
+}
+
+/* 450px-550px - טלפונים בינוניים */
+@media (min-width: 450px) and (max-width: 549px) {
+  .heroTitle {
+    font-size: 2.3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .heroContent {
+    padding: 2.5rem 1.5rem;
+  }
+  
+  .netflixGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 1.5rem;
+  }
+  
+  .netflixThumbnail {
+    height: 160px;
+  }
+  
+  .thumbnailOverlay {
+    padding: 1.5rem 1.2rem 1.2rem;
+    transform: translateY(0);
+    opacity: 1;
+    background: linear-gradient(transparent 20%, rgba(0, 0, 0, 0.9));
+  }
+  
+  .netflixThumbnail:hover .thumbnailOverlay {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+  .thumbnailTitle {
+    font-size: 1.05rem;
+  }
+  
+  .thumbnailCategory {
+    font-size: 0.75rem;
+  }
+  
+  .projectContent {
+    padding: 2.2rem 1.8rem;
+    margin: 0 1.5rem;
+    border-radius: 16px;
+  }
+  
+  .projectTitle {
+    font-size: 2rem;
+  }
+  
+  .projectDescription {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  .projectDetails {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  
+  .galleryButton {
+    padding: 12px 22px;
+    font-size: 0.9rem;
+  }
+  
+  .galleryNav {
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
+  }
+  
+  .galleryNav.prev {
+    left: 15px;
+  }
+  
+  .galleryNav.next {
+    right: 15px;
+  }
+  
+  .galleryClose {
+    top: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
+  }
+  
+  .galleryThumbnails {
+    bottom: 60px;
+    gap: 8px;
+    padding: 10px;
+  }
+  
+  .galleryThumbnail {
+    width: 60px;
+    height: 45px;
+  }
+  
+  .galleryButtonContainer {
+    bottom: -25px;
+  }
+  
+  .galleryInfo {
+    bottom: 120px;
+    left: 20px;
+    padding: 12px 16px;
+  }
+  
+  .galleryCounter {
+    font-size: 0.9rem;
+  }
+  
+  .galleryProjectTitle {
+    font-size: 1.15rem;
+  }
+}
+
+/* 550px-650px - טלפונים גדולים / טאבלטים קטנים */
+@media (min-width: 550px) and (max-width: 649px) {
+  .heroTitle {
+    font-size: 2.6rem;
+    margin-bottom: 1rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.15rem;
+    margin-bottom: 2rem;
+  }
+  
+  .heroContent {
+    padding: 2.8rem 2rem;
+  }
+  
+  .netflixGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 0 2rem;
+  }
+  
+  .netflixThumbnail {
+    height: 170px;
+  }
+  
+  .thumbnailOverlay {
+    padding: 1.6rem 1.3rem 1.3rem;
+    transform: translateY(0);
+    opacity: 1;
+    background: linear-gradient(transparent 30%, rgba(0, 0, 0, 0.9));
+  }
+  
+  .netflixThumbnail:hover .thumbnailOverlay {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+  .thumbnailTitle {
+    font-size: 1.05rem;
+  }
+  
+  .thumbnailCategory {
+    font-size: 0.75rem;
+  }
+  
+  .projectContent {
+    padding: 2.5rem 2rem;
+    margin: 0 2rem;
+    border-radius: 18px;
+  }
+  
+  .projectTitle {
+    font-size: 2.2rem;
+  }
+  
+  .projectDescription {
+    font-size: 0.98rem;
+    line-height: 1.6;
+  }
+  
+  .projectDetails {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+  
+  .galleryButton {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+  }
+  
+  .galleryNav {
+    width: 48px;
+    height: 48px;
+    font-size: 1.1rem;
+  }
+  
+  .galleryNav.prev {
+    left: 18px;
+  }
+  
+  .galleryNav.next {
+    right: 18px;
+  }
+  
+  .galleryClose {
+    top: 22px;
+    right: 22px;
+    width: 48px;
+    height: 48px;
+    font-size: 1.15rem;
+  }
+  
+  .galleryThumbnails {
+    bottom: 65px;
+    gap: 9px;
+    padding: 10px;
+  }
+  
+  .galleryThumbnail {
+    width: 65px;
+    height: 50px;
+  }
+  
+  .galleryButtonContainer {
+    bottom: -25px;
+  }
+  
+  .galleryInfo {
+    bottom: 125px;
+    left: 22px;
+    padding: 13px 17px;
+  }
+  
+  .galleryCounter {
+    font-size: 0.9rem;
+  }
+  
+  .galleryProjectTitle {
+    font-size: 1.2rem;
+  }
+}
+
+/* 650px-750px - טאבלטים קטנים/בינוניים */
+@media (min-width: 650px) and (max-width: 749px) {
+  .heroTitle {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .heroContent {
+    padding: 3rem 2.5rem;
+  }
+  
+  .netflixGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.8rem;
+    padding: 0 2.5rem;
+  }
+  
+  .netflixThumbnail {
+    height: 180px;
+  }
+  
+  .thumbnailOverlay {
+    padding: 1.7rem 1.4rem 1.4rem;
+  }
+  
+  .thumbnailTitle {
+    font-size: 1.08rem;
+  }
+  
+  .thumbnailCategory {
+    font-size: 0.78rem;
+  }
+  
+  .projectContent {
+    padding: 2.8rem 2.3rem;
+    margin: 0 2.5rem;
+    border-radius: 18px;
+  }
+  
+  .projectTitle {
+    font-size: 2.3rem;
+  }
+  
+  .projectDescription {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .projectDetails {
+    flex-direction: row;
+    gap: 1.8rem;
+  }
+  
+  .galleryButton {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+  }
+  
+  .galleryNav {
+    width: 50px;
+    height: 50px;
+    font-size: 1.15rem;
+  }
+  
+  .galleryNav.prev {
+    left: 20px;
+  }
+  
+  .galleryNav.next {
+    right: 20px;
+  }
+  
+  .galleryClose {
+    top: 25px;
+    right: 25px;
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+  
+  .galleryThumbnails {
+    bottom: 68px;
+    gap: 9px;
+    padding: 10px;
+  }
+  
+  .galleryThumbnail {
+    width: 68px;
+    height: 52px;
+  }
+  
+  .galleryButtonContainer {
+    bottom: 15px;
+  }
+  
+  .galleryInfo {
+    bottom: 128px;
+    left: 25px;
+    padding: 14px 18px;
+  }
+  
+  .galleryCounter {
+    font-size: 0.9rem;
+  }
+  
+  .galleryProjectTitle {
+    font-size: 1.2rem;
+  }
+}
+
+/* 750px-850px - טאבלטים */
+@media (min-width: 750px) and (max-width: 849px) {
+  .heroTitle {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .heroContent {
+    padding: 3rem 2.5rem;
+  }
+  
+  .netflixGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 0 2.5rem;
+  }
+  
+  .netflixThumbnail {
+    height: 180px;
+  }
+  
+  .thumbnailOverlay {
+    padding: 1.8rem 1.4rem 1.4rem;
+  }
+  
+  .thumbnailTitle {
+    font-size: 1.1rem;
+  }
+  
+  .thumbnailCategory {
+    font-size: 0.8rem;
+  }
+  
+  .projectContent {
+    padding: 2.8rem 2.5rem;
+    margin: 0 3rem;
+    border-radius: 20px;
+  }
+  
+  .projectTitle {
+    font-size: 2.4rem;
+  }
+  
+  .projectDescription {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .projectDetails {
+    flex-direction: row;
+    gap: 2rem;
+  }
+  
+  .galleryButton {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+  }
+  
+  .galleryNav {
+    width: 55px;
+    height: 55px;
+    font-size: 1.15rem;
+  }
+  
+  .galleryNav.prev {
+    left: 20px;
+  }
+  
+  .galleryNav.next {
+    right: 20px;
+  }
+  
+  .galleryClose {
+    top: 28px;
+    right: 28px;
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+  
+  .galleryThumbnails {
+    bottom: 70px;
+    gap: 10px;
+    padding: 10px;
+  }
+  
+  .galleryThumbnail {
+    width: 72px;
+    height: 55px;
+  }
+  
+  .galleryButtonContainer {
+    bottom: -25px;
+  }
+  
+  .galleryInfo {
+    bottom: 130px;
+    left: 28px;
+    padding: 14px 18px;
+  }
+  
+  .galleryCounter {
+    font-size: 0.9rem;
+  }
+  
+  .galleryProjectTitle {
+    font-size: 1.2rem;
+  }
+}
+
+/* 850px-950px - טאבלטים גדולים / מחשבים קטנים */
+@media (min-width: 850px) and (max-width: 949px) {
+  .heroTitle {
+    font-size: 3.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .heroContent {
+    padding: 3rem;
+  }
+  
+  .netflixGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 0 2rem;
+  }
+  
+  .netflixThumbnail {
+    height: 190px;
+  }
+  
+  .thumbnailOverlay {
+    padding: 1.8rem 1.5rem 1.5rem;
+  }
+  
+  .thumbnailTitle {
+    font-size: 1.1rem;
+  }
+  
+  .thumbnailCategory {
+    font-size: 0.8rem;
+  }
+  
+  .projectContent {
+    padding: 3rem;
+    margin: 0 3.5rem;
+    border-radius: 20px;
+  }
+  
+  .projectTitle {
+    font-size: 2.5rem;
+  }
+  
+  .projectDescription {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .projectDetails {
+    flex-direction: row;
+    gap: 2rem;
+  }
+  
+  .galleryButton {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+  }
+  
+  .galleryNav {
+    width: 58px;
+    height: 58px;
+    font-size: 1.2rem;
+  }
+  
+  .galleryNav.prev {
+    left: 20px;
+  }
+  
+  .galleryNav.next {
+    right: 20px;
+  }
+  
+  .galleryClose {
+    top: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+  
+  .galleryThumbnails {
+    bottom: 70px;
+    gap: 10px;
+    padding: 10px;
+  }
+  
+  .galleryThumbnail {
+    width: 75px;
+    height: 58px;
+  }
+  
+  .galleryButtonContainer {
+    bottom: -25px;
+  }
+  
+  .galleryInfo {
+    bottom: 130px;
+    left: 30px;
+    padding: 15px 20px;
+  }
+  
+  .galleryCounter {
+    font-size: 0.9rem;
+  }
+  
+  .galleryProjectTitle {
+    font-size: 1.2rem;
+  }
+}
+
+/* 950px-1050px - מחשבים קטנים/בינוניים */
+@media (min-width: 950px) and (max-width: 1049px) {
+  .heroTitle {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .heroContent {
+    padding: 3rem;
+  }
+  
+  .netflixGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 0 2rem;
+  }
+  
+  .netflixThumbnail {
+    height: 200px;
+  }
+  
+  .thumbnailOverlay {
+    padding: 2rem 1.5rem 1.5rem;
+  }
+  
+  .thumbnailTitle {
+    font-size: 1.1rem;
+  }
+  
+  .thumbnailCategory {
+    font-size: 0.8rem;
+  }
+  
+  .projectContent {
+    padding: 3rem;
+    margin: 0 4rem;
+    border-radius: 20px;
+  }
+  
+  .projectTitle {
+    font-size: 2.5rem;
+  }
+  
+  .projectDescription {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .projectDetails {
+    flex-direction: row;
+    gap: 2rem;
+  }
+  
+  .galleryButton {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+  }
+  
+  .galleryNav {
+    width: 60px;
+    height: 60px;
+    font-size: 1.2rem;
+  }
+  
+  .galleryNav.prev {
+    left: 20px;
+  }
+  
+  .galleryNav.next {
+    right: 20px;
+  }
+  
+  .galleryClose {
+    top: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+  
+  .galleryThumbnails {
+    bottom: 70px;
+    gap: 10px;
+    padding: 10px;
+  }
+  
+  .galleryThumbnail {
+    width: 78px;
+    height: 60px;
+  }
+  
+  .galleryButtonContainer {
+    bottom: -25px;
+  }
+  
+  .galleryInfo {
+    bottom: 130px;
+    left: 30px;
+    padding: 15px 20px;
+  }
+  
+  .galleryCounter {
+    font-size: 0.9rem;
+  }
+  
+  .galleryProjectTitle {
+    font-size: 1.2rem;
+  }
+}
+
+/* 1050px-1150px - מחשבים בינוניים */
+@media (min-width: 1050px) and (max-width: 1149px) {
+  .heroTitle {
+    font-size: 3.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .heroContent {
+    padding: 3rem;
+  }
+  
+  .netflixGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 0 2rem;
+  }
+  
+  .netflixThumbnail {
+    height: 200px;
+  }
+  
+  .thumbnailOverlay {
+    padding: 2rem 1.5rem 1.5rem;
+  }
+  
+  .thumbnailTitle {
+    font-size: 1.1rem;
+  }
+  
+  .thumbnailCategory {
+    font-size: 0.8rem;
+  }
+  
+  .projectContent {
+    padding: 3rem;
+    margin: 0 4rem;
+    border-radius: 20px;
+  }
+  
+  .projectTitle {
+    font-size: 2.5rem;
+  }
+  
+  .projectDescription {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .projectDetails {
+    flex-direction: row;
+    gap: 2rem;
+  }
+  
+  .galleryButton {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+  }
+}

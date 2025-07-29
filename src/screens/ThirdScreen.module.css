@@ -1,0 +1,557 @@
+/* הוספה בתחילת הקובץ - backgroundContainer עבור DarkVeil */
+.backgroundContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.header {
+    font-family: "Assistant";
+    font-size: 3rem;
+    text-align: center;
+    color: #fffef9;
+    width: 80%;
+    font-weight: 600;
+    margin: 2% auto;
+    direction: rtl;
+}
+
+.title {
+    font-family: "AssistantR";
+    font-size: 2.8rem;
+    text-align: center;
+    color: #fffef9;
+    width: 80%;
+    margin: 2% auto;
+    direction: rtl;
+}
+
+.description {
+    font-family: "AssistantR";
+    font-size: 1.4rem;
+    text-align: center;
+    color: #ffffff;
+    width: 80%;
+    margin: 2% auto;
+    direction: rtl;
+}
+
+.bigWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+.step {
+    width: 70%;
+    margin: 2% auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.icons {
+    height: 250px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin: 3%;
+    justify-content: space-evenly;
+}
+
+.stepNum {
+    font-family: "Assistant";
+    font-size: 40px;
+    text-align: center;
+    color: #fffef9;
+    width: 100%;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.stepHeader {
+    font-family: "AssistantR";
+    font-size: 40px;
+    text-align: center;
+    color: #ffffff;
+    margin: 2% auto;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.section {
+    font-family: "AssistantR";
+    font-size: 22px;
+    text-align: center;
+    color: #fffef9;
+    direction: rtl;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.iconImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* מתחת ל-350px */
+@media only screen and (max-width: 349px) {
+    .header {
+        font-size: 1.5rem;
+        width: 90%;
+        margin: 5% auto;
+    }
+
+    .title {
+        font-size: 1.5rem;
+        width: 90%;
+        margin: 5% auto;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .description {
+        font-size: 0.9rem;
+        width: 95%;
+        margin: 5% auto;
+    }
+
+    .step {
+        width: 95%;
+        margin: 8% auto;
+        flex-direction: column;
+    }
+
+    .icons {
+        height: 70px;
+        width: 100%;
+        margin-bottom: 5%;
+    }
+
+    .text {
+        width: 100%;
+        margin: 2%;
+    }
+
+    .stepHeader {
+        font-size: 16px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .section {
+        font-size: 12px;
+        width: 100%;
+    }
+}
+
+/* 350px-450px */
+@media only screen and (min-width: 350px) and (max-width: 449px) {
+    .header {
+        font-size: 1.8rem;
+        width: 90%;
+        margin: 5% auto;
+    }
+
+    .title {
+        font-size: 1.8rem;
+        width: 90%;
+        margin: 5% auto;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .description {
+        font-size: 1rem;
+        width: 90%;
+        margin: 5% auto;
+    }
+
+    .step {
+        width: 95%;
+        margin: 7% auto;
+    }
+
+    .icons {
+        height: 80px;
+        flex: 0.6;
+    }
+
+    .text {
+        flex: 1.4;
+        margin: 2%;
+    }
+
+    .stepHeader {
+        font-size: 18px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .section {
+        font-size: 13px;
+    }
+}
+
+/* 450px-550px */
+@media only screen and (min-width: 450px) and (max-width: 549px) {
+    .header {
+        font-size: 2.1rem;
+        width: 85%;
+        margin: 4% auto;
+    }
+
+    .title {
+        font-size: 2.1rem;
+        width: 85%;
+        margin: 4% auto;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .description {
+        font-size: 1.1rem;
+        width: 90%;
+        margin: 4% auto;
+    }
+
+    .step {
+        width: 90%;
+        margin: 6% auto;
+    }
+
+    .icons {
+        height: 100px;
+        flex: 0.7;
+    }
+
+    .text {
+        flex: 1.3;
+        margin: 2.5%;
+    }
+
+    .stepHeader {
+        font-size: 22px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .section {
+        font-size: 14px;
+    }
+}
+
+/* 550px-650px */
+@media only screen and (min-width: 550px) and (max-width: 649px) {
+    .header {
+        font-size: 2.4rem;
+        width: 85%;
+        margin: 4% auto;
+    }
+
+    .title {
+        font-size: 2.4rem;
+        width: 85%;
+        margin: 4% auto;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .description {
+        font-size: 1.15rem;
+        width: 85%;
+        margin: 4% auto;
+    }
+
+    .step {
+        width: 90%;
+        margin: 5% auto;
+    }
+
+    .icons {
+        height: 120px;
+        flex: 0.8;
+    }
+
+    .text {
+        flex: 1.2;
+        margin: 3%;
+    }
+
+    .stepHeader {
+        font-size: 24px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .section {
+        font-size: 15px;
+    }
+}
+
+/* 650px-750px */
+@media only screen and (min-width: 650px) and (max-width: 749px) {
+    .header {
+        font-size: 2.7rem;
+        width: 85%;
+        margin: 3% auto;
+    }
+
+    .title {
+        font-size: 2.7rem;
+        width: 85%;
+        margin: 3% auto;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .description {
+        font-size: 1.2rem;
+        width: 85%;
+        margin: 3% auto;
+    }
+
+    .step {
+        width: 85%;
+        margin: 5% auto;
+    }
+
+    .icons {
+        height: 140px;
+        flex: 0.85;
+    }
+
+    .text {
+        flex: 1.15;
+        margin: 3%;
+    }
+
+    .stepHeader {
+        font-size: 26px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .section {
+        font-size: 16px;
+    }
+}
+
+/* 750px-850px */
+@media only screen and (min-width: 750px) and (max-width: 849px) {
+    .header {
+        font-size: 3rem;
+        width: 80%;
+        margin: 3% auto;
+    }
+
+    .title {
+        font-size: 3rem;
+        width: 80%;
+        margin: 3% auto;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .description {
+        font-size: 1.25rem;
+        width: 80%;
+        margin: 3% auto;
+    }
+
+    .step {
+        width: 80%;
+        margin: 4% auto;
+    }
+
+    .icons {
+        height: 160px;
+        flex: 0.9;
+    }
+
+    .text {
+        flex: 1.1;
+        margin: 3%;
+    }
+
+    .stepHeader {
+        font-size: 28px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .section {
+        font-size: 17px;
+    }
+}
+
+/* 850px-950px */
+@media only screen and (min-width: 850px) and (max-width: 949px) {
+  
+
+    .title {
+        font-size: 3.2rem;
+        width: 80%;
+        margin: 3% auto;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .description {
+        font-size: 1.3rem;
+        width: 80%;
+        margin: 3% auto;
+    }
+
+    .step {
+        width: 75%;
+        margin: 4% auto;
+    }
+
+    .icons {
+        height: 180px;
+        flex: 1;
+    }
+
+    .text {
+        flex: 1;
+        margin: 3%;
+    }
+
+    .stepHeader {
+        font-size: 30px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .section {
+        font-size: 18px;
+    }
+}
+
+/* 950px-1050px */
+@media only screen and (min-width: 950px) and (max-width: 1049px) {
+
+
+    .title {
+        font-size: 3.4rem;
+        width: 80%;
+        margin: 2.5% auto;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .description {
+        font-size: 1.35rem;
+        width: 80%;
+        margin: 2.5% auto;
+    }
+
+    .step {
+        width: 75%;
+        margin: 3% auto;
+    }
+
+    .icons {
+        height: 200px;
+        flex: 1;
+    }
+
+    .text {
+        flex: 1;
+        margin: 3%;
+    }
+
+    .stepHeader {
+        font-size: 32px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .section {
+        font-size: 19px;
+    }
+}
+
+/* 1050px-1150px */
+@media only screen and (min-width: 1050px) and (max-width: 1149px) {
+    
+
+    .title {
+        font-size: 3.6rem;
+        width: 75%;
+        margin: 2% auto;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .description {
+        font-size: 1.4rem;
+        width: 75%;
+        margin: 2% auto;
+    }
+
+    .step {
+        width: 70%;
+        margin: 3% auto;
+    }
+
+    .icons {
+        height: 220px;
+        flex: 1;
+    }
+
+    .text {
+        flex: 1;
+        margin: 3%;
+    }
+
+    .stepHeader {
+        font-size: 34px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .section {
+        font-size: 20px;
+    }
+}
+
+/* 1150px-1250px */
+@media only screen and (min-width: 1150px) and (max-width: 1249px) {
+ 
+
+    .title {
+        font-size: 3.8rem;
+        width: 75%;
+        margin: 2% auto;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .description {
+        font-size: 1.45rem;
+        width: 75%;
+        margin: 2% auto;
+    }
+
+    .step {
+        width: 70%;
+        margin: 2% auto;
+    }
+
+    .icons {
+        height: 240px;
+        flex: 1;
+    }
+
+    .text {
+        flex: 1;
+        margin: 3%;
+    }
+
+    .stepHeader {
+        font-size: 36px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .section {
+        font-size: 21px;
+    }
+}

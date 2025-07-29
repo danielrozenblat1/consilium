@@ -1,0 +1,46 @@
+.testimonialContainer {
+    /* קונטיינר חיצוני - קבוע ברוחב 30% במסכים גדולים */
+    width: 100%;
+    height: 80vh; /* גובה מלא של המסך */
+    position: relative;
+    overflow: hidden; /* מונע גלישת תוכן */
+  }
+  
+  .testimonialScroll {
+    /* אזור הגלילה */
+    height: 100%;
+    width: 100%;
+    overflow-y: auto; /* מאפשר גלילה אנכית */
+    overflow-x: hidden; /* מונע גלילה אופקית */
+    scrollbar-width: thin; /* סגנון סרגל גלילה דק (Firefox) */
+  }
+  
+  .testimonialScroll::-webkit-scrollbar {
+    width: 6px; /* רוחב סרגל גלילה (Chrome, Safari) */
+  }
+  
+  .testimonialScroll::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3); /* צבע ידית סרגל הגלילה */
+    border-radius: 3px;
+  }
+  
+  .testimonialItem {
+    /* מיכל לכל תמונת המלצה */
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .testimonialImage {
+    /* סגנון תמונות ההמלצה */
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* מדיה קוורי למסכים קטנים יותר */
+  @media (max-width: 768px) {
+    .testimonialContainer {
+      width: 100%; /* ברוחב מלא במסכים קטנים */
+      height: 50vh; /* גובה של 50% מהמסך */
+    }
+  }

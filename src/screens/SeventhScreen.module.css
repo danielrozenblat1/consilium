@@ -1,0 +1,211 @@
+/* Base styles */
+.title {
+    font-family: "Assistant";
+    font-size: 2.5rem;
+    text-align: center;
+    font-weight: bold;
+    padding: 2%;
+    direction: rtl;
+}
+
+.description {
+    font-family: "AssistantR";
+    font-size: 1.4rem;
+    text-align: center;
+    padding: 2% auto;
+    direction: rtl;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    direction: rtl;
+    margin: 3% auto;
+}
+
+/* מתחת ל-350px */
+@media (max-width: 349px) {
+    .title {
+        font-size: 1.5rem;
+        padding: 3%;
+    }
+    
+    .description {
+         font-size: 1.1rem;
+        padding: 3% 2%;
+    }
+    
+    .row {
+        flex-direction: column;
+        margin: 4% auto;
+        padding: 0 2%;
+    }
+}
+
+/* 350px - 450px */
+@media (min-width: 350px) and (max-width: 450px) {
+    .title {
+        font-size: 1.7rem;
+        padding: 2.8%;
+    }
+    
+    .description {
+        font-size: 1.1rem;
+        padding: 2.8% 2%;
+    }
+    
+    .row {
+        flex-direction: column;
+        margin: 3.8% auto;
+        padding: 0 2%;
+    }
+}
+
+/* 450px - 550px */
+@media (min-width: 450px) and (max-width: 550px) {
+    .title {
+        font-size: 1.8rem;
+        padding: 2.6%;
+    }
+    
+    .description {
+        font-size: 1rem;
+        padding: 2.6% auto;
+    }
+    
+    .row {
+        flex-direction: row;
+        margin: 3.6% auto;
+        padding: 0 1.5%;
+    }
+}
+
+/* 550px - 650px */
+@media (min-width: 550px) and (max-width: 650px) {
+    .title {
+        font-size: 2rem;
+        padding: 2.5%;
+    }
+    
+    .description {
+        font-size: 1.1rem;
+        padding: 2.5% auto;
+    }
+    
+    .row {
+        flex-direction: row;
+        margin: 3.4% auto;
+        padding: 0 1.5%;
+    }
+}
+
+/* 650px - 750px */
+@media (min-width: 650px) and (max-width: 750px) {
+    .title {
+        font-size: 2rem;
+        padding: 2.4%;
+    }
+    
+    .description {
+        font-size: 1.2rem;
+        padding: 2.4% auto;
+    }
+    
+    .row {
+        flex-direction: row;
+        margin: 3.3% auto;
+    }
+}
+
+/* 750px - 850px */
+@media (min-width: 750px) and (max-width: 850px) {
+    .title {
+        font-size: 2.1rem;
+        padding: 2.3%;
+    }
+    
+    .description {
+        font-size: 1.25rem;
+        padding: 2.3% auto;
+    }
+    
+    .row {
+        flex-direction: row;
+        margin: 3.2% auto;
+    }
+}
+
+/* 850px - 950px */
+@media (min-width: 850px) and (max-width: 950px) {
+    .title {
+        font-size: 2.2rem;
+        padding: 2.2%;
+    }
+    
+    .description {
+        font-size: 1.3rem;
+        padding: 2.2% auto;
+    }
+    
+    .row {
+        flex-direction: row;
+        margin: 3.1% auto;
+    }
+}
+
+/* 950px - 1050px */
+@media (min-width: 950px) and (max-width: 1050px) {
+    .title {
+        font-size: 2.3rem;
+        padding: 2.1%;
+    }
+    
+    .description {
+        font-size: 1.35rem;
+        padding: 2.1% auto;
+    }
+    
+    .row {
+        flex-direction: row;
+        margin: 3.05% auto;
+    }
+}
+
+/* 1050px - 1150px */
+@media (min-width: 1050px) and (max-width: 1150px) {
+    .title {
+        font-size: 2.4rem;
+        padding: 2.05%;
+    }
+    
+    .description {
+        font-size: 1.38rem;
+        padding: 2.05% auto;
+    }
+    
+    .row {
+        flex-direction: row;
+        margin: 3.02% auto;
+    }
+}
+
+/* 1150px - 1250px */
+@media (min-width: 1150px) and (max-width: 1250px) {
+    .title {
+        font-size: 2.45rem;
+        padding: 2.02%;
+    }
+    
+    .description {
+        font-size: 1.39rem;
+        padding: 2.02% auto;
+    }
+    
+    .row {
+        flex-direction: row;
+        margin: 3.01% auto;
+    }
+}
+

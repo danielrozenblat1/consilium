@@ -1,0 +1,41 @@
+/* ScrollStack.css */
+
+.scroll-stack-scroller {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* חשוב: גובה קבוע */
+  overflow-y: auto; /* חשוב: מאפשר גלילה */
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: scroll-position;
+}
+
+.scroll-stack-inner {
+  position: relative;
+  padding: 20vh 0 100vh; /* padding תחתון גדול לאפשר גלילה */
+  min-height: 100vh;
+  width: 100%;
+}
+
+.scroll-stack-card {
+  position: relative;
+  transform-origin: top center;
+  will-change: transform, filter;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  width: 100%;
+  margin-bottom: 100px; /* מרווח בין כרטיסיות */
+  box-sizing: border-box;
+  /* Improve performance */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.scroll-stack-end {
+  position: relative;
+  width: 100%;
+  height: 50vh; /* גובה נוסף בסוף לאפשר גלילה מלאה */
+}

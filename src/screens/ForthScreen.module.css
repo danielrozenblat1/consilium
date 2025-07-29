@@ -1,0 +1,173 @@
+/* בסיס */
+.title {
+    font-family: "Assistant";
+    font-size: 2.5rem;
+    text-align: center;
+    font-weight: bold;
+    width: 80%;
+    margin: 2% auto;
+    direction: rtl;
+}
+
+.description {
+    font-family: "AssistantR";
+    font-size: 1.4rem;
+    text-align: center;
+    width: 80%;
+    margin: 2% auto;
+    direction: rtl;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    direction: rtl;
+    margin: 3% auto;
+}
+
+/* מתחת ל-350px */
+@media (max-width: 349px) {
+    .title {
+        font-size: 1.8rem;
+        width: 95%;
+        margin: 3% auto;
+    }
+    
+    .description {
+        font-size: 1rem;
+        width: 95%;
+        margin: 3% auto;
+    }
+    
+    .row {
+        flex-direction: column;
+        margin: 4% auto;
+        width: 95%;
+    }
+}
+
+/* 350-450px */
+@media (min-width: 350px) and (max-width: 450px) {
+    .title {
+        font-size: 1.7rem;
+        width: 90%;
+        margin: 2.5% auto;
+    }
+    
+    .description {
+        font-size: 1.1rem;
+        width: 90%;
+        margin: 2.5% auto;
+    }
+    
+    .row {
+        flex-direction: column;
+        margin: 3.5% auto;
+        width: 90%;
+    }
+}
+
+/* 450-550px */
+@media (min-width: 450px) and (max-width: 550px) {
+    .title {
+        font-size: 2.1rem;
+        width: 85%;
+        margin: 2.5% auto;
+    }
+    
+    .description {
+        font-size: 1.2rem;
+        width: 85%;
+        margin: 2.5% auto;
+    }
+    
+    .row {
+        flex-direction: row;
+        margin: 3.5% auto;
+        width: 85%;
+    }
+}
+
+/* 550-650px */
+@media (min-width: 550px) and (max-width: 650px) {
+    .title {
+        font-size: 2.2rem;
+        width: 85%;
+        margin: 2.5% auto;
+    }
+    
+    .description {
+        font-size: 1.25rem;
+        width: 85%;
+        margin: 2.5% auto;
+    }
+    
+    .row {
+        margin: 3.2% auto;
+        width: 85%;
+    }
+}
+
+/* 650-750px */
+@media (min-width: 650px) and (max-width: 750px) {
+    .title {
+        font-size: 2.3rem;
+        width: 82%;
+        margin: 2.3% auto;
+    }
+    
+    .description {
+        font-size: 1.3rem;
+        width: 82%;
+        margin: 2.3% auto;
+    }
+    
+    .row {
+        margin: 3.1% auto;
+        width: 82%;
+    }
+}
+
+/* 750-850px */
+@media (min-width: 750px) and (max-width: 850px) {
+    .title {
+        font-size: 2.4rem;
+        width: 81%;
+        margin: 2.2% auto;
+    }
+    
+    .description {
+        font-size: 1.35rem;
+        width: 81%;
+        margin: 2.2% auto;
+    }
+    
+    .row {
+        margin: 3.1% auto;
+        width: 81%;
+    }
+}
+
+/* 850-950px */
+@media (min-width: 850px) and (max-width: 950px) {
+    .title {
+        font-size: 2.45rem;
+        width: 80%;
+        margin: 2.1% auto;
+    }
+    
+    .description {
+        font-size: 1.38rem;
+        width: 80%;
+        margin: 2.1% auto;
+    }
+    
+    .row {
+        margin: 3% auto;
+    }
+}
+
+
+
