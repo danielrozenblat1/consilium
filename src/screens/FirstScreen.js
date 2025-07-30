@@ -17,6 +17,19 @@ const ArchitectLanding = () => {
     reason: '',
     expansion: ''
   });
+  
+  // ✅ הוספת state לולידציה ושליחה
+  const [errors, setErrors] = useState({
+    fullName: '',
+    phone: '',
+    reason: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  // ✅ הגדרות השרת - עודכן עם המייל שלך
+  const serverUrl = "https://dynamic-server-dfc88e1f1c54.herokuapp.com/leads/newLead";
+  const reciver = "royshm22@gmail.com"; // ✅ עודכן למייל שלך
 
   const images = [image1, image2, image3, image4, image5];
 
@@ -62,24 +75,121 @@ const ArchitectLanding = () => {
     }
   };
 
-  const handleContactSubmit = () => {
-    console.log('Contact form submitted:', formData);
-    // Here you would typically send the data to your backend
-    setShowContactForm(false);
-    // Reset form
-    setFormData({
-      fullName: '',
-      phone: '',
-      reason: '',
-      expansion: ''
-    });
+  // ✅ פונקציית ולידציה עם push notifications
+  const validateForm = () => {
+    let valid = true;
+    const newErrors = { fullName: '', phone: '', reason: '' };
+
+    // ולידציה לשם מלא
+    if (!formData.fullName.trim()) {
+      newErrors.fullName = 'נא להזין שם מלא';
+      // ✅ Push notification
+      alert('נא להזין שם מלא');
+      valid = false;
+    } else if (formData.fullName.trim().length < 2) {
+      newErrors.fullName = 'שם חייב להכיל לפחות 2 תווים';
+      // ✅ Push notification
+      alert('שם חייב להכיל לפחות 2 תווים');
+      valid = false;
+    }
+
+    // ولידציה למספר טלפון (פורמט ישראלי)
+    const phoneRegex = /^0(5\d|[23489])\d{7}$/;
+    if (!formData.phone.trim()) {
+      newErrors.phone = 'נא להזין מספר טלפון';
+      // ✅ Push notification
+      alert('נא להזין מספר טלפון');
+      valid = false;
+    } else if (!phoneRegex.test(formData.phone.trim())) {
+      newErrors.phone = 'נא להזין מספר טלפון תקין';
+      // ✅ Push notification
+      alert('נא להזין מספר טלפון תקין');
+      valid = false;
+    }
+
+    // ולידציה לסיבת פנייה
+    if (!formData.reason.trim()) {
+      newErrors.reason = 'נא לבחור סיבת פנייה';
+      // ✅ Push notification
+      alert('נא לבחור סיבת פנייה');
+      valid = false;
+    }
+
+    setErrors(newErrors);
+    return valid;
   };
 
+  // ✅ פונקציית שליחת הטופס - עודכנה למייל שלך ועם ולידציה
+  const handleContactSubmit = async () => {
+    // בדיקת ולידציה לפני שליחה
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    // ✅ נתוני השרת - ההרחבה מתווספת ל-reason כמו אצל עידית
+    const serverData = {
+      name: formData.fullName,
+      phone: formData.phone,
+      email: "", // לא נדרש בטופס אבל כלול במבנה ה-API
+      reason: formData.expansion ? `${formData.reason} - ${formData.expansion}` : formData.reason,
+      reciver: reciver
+    };
+
+    try {
+      // שליחה לשרת
+      const serverResponse = await fetch(serverUrl, {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(serverData)
+      });
+
+      if (serverResponse.ok) {
+        setIsSubmitting(false);
+        setSubmitted(true);
+        
+        // איפוס הטופס אחרי שליחה מוצלחת
+        setTimeout(() => {
+          setFormData({
+            fullName: '',
+            phone: '',
+            reason: '',
+            expansion: ''
+          });
+          setErrors({
+            fullName: '',
+            phone: '',
+            reason: ''
+          });
+          setSubmitted(false);
+          setShowContactForm(false);
+        }, 3000);
+      } else {
+        throw new Error('Failed to submit form');
+      }
+    } catch (error) {
+      alert("התרחשה שגיאה, אנא נסו שוב מאוחר יותר");
+      console.error('Error submitting form:', error);
+      setIsSubmitting(false);
+    }
+  };
+
+  // ✅ עודכן לניקוי שגיאות בזמן הקלדה
   const handleInputChange = (e) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: value
     });
+    
+    // ניקוי שגיאות כשהמשתמש מתחיל להקליד
+    if (errors[name]) {
+      setErrors({
+        ...errors,
+        [name]: ''
+      });
+    }
   };
 
   return (
@@ -108,7 +218,6 @@ const ArchitectLanding = () => {
         <div className={styles.content}>
           <div className={styles.brandContainer}>
             <h1 className={styles.brand}>Consillium</h1>
-        
           </div>
           <p className={styles.subtitle}>החלום שלכם הוא המומחיות שלנו</p>
           <p className={styles.description}>ליווי מא' עד ת' אל הבית שחלמתם עליו, בלי כאבים בראש ובכיס</p>
@@ -152,14 +261,13 @@ const ArchitectLanding = () => {
         </div>
       </div>
 
-      {/* Contact Form Overlay */}
+      {/* ✅ Contact Form Overlay - עודכן עם ולידציה */}
       <div className={`${styles.contactOverlay} ${showContactForm ? styles.active : ''}`}>
         <div className={styles.contactForm}>
           <button className={styles.closeButton} onClick={() => setShowContactForm(false)}>
             ×
           </button>
 
-          
           <div className={styles.formGroup}>
             <label className={styles.formLabel}>שם מלא</label>
             <input
@@ -167,9 +275,12 @@ const ArchitectLanding = () => {
               name="fullName"
               value={formData.fullName}
               onChange={handleInputChange}
-              className={styles.formInput}
+              className={`${styles.formInput} ${errors.fullName ? styles.inputError : ''}`}
               placeholder="השם שלכם"
+              disabled={isSubmitting || submitted}
             />
+            {/* ✅ הודעת שגיאה */}
+            {errors.fullName && <p className={styles.errorText}>{errors.fullName}</p>}
           </div>
 
           <div className={styles.formGroup}>
@@ -179,9 +290,12 @@ const ArchitectLanding = () => {
               name="phone"
               value={formData.phone}
               onChange={handleInputChange}
-              className={styles.formInput}
+              className={`${styles.formInput} ${errors.phone ? styles.inputError : ''}`}
               placeholder="050-1234567"
+              disabled={isSubmitting || submitted}
             />
+            {/* ✅ הודעת שגיאה */}
+            {errors.phone && <p className={styles.errorText}>{errors.phone}</p>}
           </div>
 
           <div className={styles.formGroup}>
@@ -190,13 +304,16 @@ const ArchitectLanding = () => {
               name="reason"
               value={formData.reason}
               onChange={handleInputChange}
-              className={styles.formSelect}
+              className={`${styles.formSelect} ${errors.reason ? styles.inputError : ''}`}
+              disabled={isSubmitting || submitted}
             >
               <option value="">בחרו סיבת פנייה</option>
               <option value="שיפוץ">שיפוץ</option>
               <option value="קניתי דירה מקבלן">קניתי דירה מקבלן</option>
               <option value="אחר">אחר</option>
             </select>
+            {/* ✅ הודעת שגיאה */}
+            {errors.reason && <p className={styles.errorText}>{errors.reason}</p>}
           </div>
 
           <div className={styles.formGroup}>
@@ -207,27 +324,29 @@ const ArchitectLanding = () => {
               onChange={handleInputChange}
               className={styles.formTextarea}
               placeholder="ספרו לנו יותר על הפרויקט שלכם..."
+              disabled={isSubmitting || submitted}
             />
           </div>
 
           <div className={styles.formButtons}>
+            {/* ✅ כפתור עודכן עם מצבי שליחה ושם "רועי" */}
             <button 
-              className={styles.submitButton} 
+              className={`${styles.submitButton} ${isSubmitting ? styles.submitting : ''} ${submitted ? styles.submitted : ''}`}
               onClick={handleContactSubmit}
+              disabled={isSubmitting || submitted}
             >
-              רועי, בוא נדבר
+              {isSubmitting ? 'שולח...' : submitted ? 'נשלח בהצלחה!' : 'רועי, בוא נדבר'}
             </button>
             <button 
               className={styles.cancelButton} 
               onClick={() => setShowContactForm(false)}
+              disabled={isSubmitting || submitted}
             >
               ביטול
             </button>
           </div>
         </div>
       </div>
-
-
     </>
   );
 };

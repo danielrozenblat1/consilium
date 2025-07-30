@@ -147,8 +147,9 @@ const Timeline = () => {
               </div>
             </div>
           ))}
-        </div>
           <Button text="רועי, בוא נדבר"/>
+        </div>
+          
       </div>
     
     </div>

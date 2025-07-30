@@ -11,7 +11,7 @@ const SixthScreen = () => {
         <>
         
             <div className={styles.background}>
-               <DarkVeil 
+               {/* <DarkVeil 
                         hueShift={0.5}           
                         noiseIntensity={isMobile ? 0.015 : 0.02} // יותר רעש = יותר גלים
                         scanlineIntensity={isMobile ? 0.01 : 0.015} // קווי סריקה עדינים יותר
@@ -21,7 +21,7 @@ const SixthScreen = () => {
                         primaryColor="#909090" // אפור בהיר יותר לגלים - ניכר יותר לעין
                         secondaryColor="#707070" // אפור בהיר יותר לגלים
                         backgroundColor="#000000" // רקע שחור
-                    />
+                    /> */}
         
              
 

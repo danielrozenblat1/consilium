@@ -2,6 +2,7 @@
     position: relative;
     width: 100%;
     min-height: 100vh;
+    background: black;
     overflow: hidden;
 }
 
@@ -15,10 +16,136 @@
     z-index: 0;
 }
 
+/* אפקט גלו ראשי מרכזי - גדול ועדין */
+.bgGlowMain {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 90%;
+    background: radial-gradient(ellipse at center, rgba(220, 220, 235, 0.25) 0%, rgba(180, 180, 190, 0.15) 40%, rgba(10, 10, 20, 0) 80%);
+    filter: blur(20px) contrast(2) brightness(0.9);
+    z-index: 1;
+    animation: glowPulse 8s infinite alternate;
+}
+
+/* גלו מעל הכותרת - קטן יותר וחד יותר */
+.bgGlowTitle {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 40%;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.15) 0%, rgba(200, 200, 220, 0.08) 30%, rgba(10, 10, 20, 0) 60%);
+    filter: blur(15px) contrast(1.8) brightness(1.1);
+    z-index: 1;
+    animation: glowPulseTitle 6s infinite alternate-reverse;
+}
+
+/* גלו מתחת לחץ */
+.bgGlowArrow {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    height: 20%;
+    background: radial-gradient(circle at center, rgba(220, 220, 235, 0.2) 0%, rgba(180, 180, 190, 0.1) 50%, rgba(10, 10, 20, 0) 80%);
+    filter: blur(12px) contrast(1.5) brightness(1.2);
+    z-index: 1;
+    animation: glowPulseArrow 4s infinite alternate;
+}
+
+/* גלו צדדי שמאל */
+.bgGlowLeft {
+    position: absolute;
+    top: 40%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+    width: 35%;
+    height: 50%;
+    background: radial-gradient(ellipse at center, rgba(180, 180, 200, 0.12) 0%, rgba(150, 150, 170, 0.06) 40%, rgba(10, 10, 20, 0) 70%);
+    filter: blur(25px) contrast(1.6) brightness(0.8);
+    z-index: 1;
+    animation: glowPulseLeft 10s infinite alternate;
+}
+
+/* גלו צדדי ימין */
+.bgGlowRight {
+    position: absolute;
+    top: 60%;
+    right: 10%;
+    transform: translate(50%, -50%);
+    width: 35%;
+    height: 50%;
+    background: radial-gradient(ellipse at center, rgba(200, 200, 220, 0.12) 0%, rgba(170, 170, 190, 0.06) 40%, rgba(10, 10, 20, 0) 70%);
+    filter: blur(25px) contrast(1.6) brightness(0.8);
+    z-index: 1;
+    animation: glowPulseRight 12s infinite alternate-reverse;
+}
+
+/* אנימציות לכל סוג גלו */
+@keyframes glowPulse {
+    0% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.05);
+    }
+}
+
+@keyframes glowPulseTitle {
+    0% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+    100% {
+        opacity: 0.9;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+}
+
+@keyframes glowPulseArrow {
+    0% {
+        opacity: 0.7;
+        transform: translate(-50%, -50%) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.15);
+    }
+}
+
+@keyframes glowPulseLeft {
+    0% {
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(0.8) rotate(-2deg);
+    }
+    100% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(1.2) rotate(2deg);
+    }
+}
+
+@keyframes glowPulseRight {
+    0% {
+        opacity: 0.5;
+        transform: translate(50%, -50%) scale(0.8) rotate(2deg);
+    }
+    100% {
+        opacity: 0.8;
+        transform: translate(50%, -50%) scale(1.2) rotate(-2deg);
+    }
+}
+
 /* התוכן מעל הרקע */
 .content {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     width: 100%;
     min-height: 100vh;
 }
@@ -87,5 +214,30 @@
     .description {
         font-size: 1.2rem;
         padding: 3%;
+    }
+    
+    /* הקטנת אפקטי הגלו במובייל */
+    .bgGlowMain {
+        width: 120%;
+        height: 100%;
+        filter: blur(15px) contrast(1.8) brightness(0.8);
+    }
+    
+    .bgGlowTitle {
+        width: 80%;
+        height: 35%;
+        filter: blur(12px) contrast(1.6) brightness(1.0);
+    }
+    
+    .bgGlowArrow {
+        width: 50%;
+        height: 25%;
+        filter: blur(10px) contrast(1.3) brightness(1.1);
+    }
+    
+    .bgGlowLeft, .bgGlowRight {
+        width: 50%;
+        height: 40%;
+        filter: blur(20px) contrast(1.4) brightness(0.7);
     }
 }

@@ -17,10 +17,10 @@ const IconTextComponent = ({ text, icon }) => {
   }, []);
   
   useEffect(() => {
-    ScrollReveal().reveal(`.${styles.icon}`, {
+    ScrollReveal().reveal(`.${styles.container}`, {
       duration: 1000,
-      distance: "100px",
-      origin: "left",
+      distance: "40px",
+      origin: "top",
       easing: "ease-out",
       reset: false,
       viewFactor: 0.2,

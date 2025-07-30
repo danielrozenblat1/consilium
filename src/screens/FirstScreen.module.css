@@ -277,9 +277,9 @@
   animation: fadeIn 1.5s ease-out 1.5s forwards;
 }
 
-/* הכפתור צרו קשר - נשאר fixed כדי להישאר בכל המסכים */
+/* הכפתור צרו קשר - שונה מ-fixed ל-absolute כדי להישאר רק במסך הראשון */
 .phoneButton {
-  position: fixed;
+  position: absolute;
   bottom: 40px;
   left: 40px;
   padding: 20px 35px;
@@ -302,7 +302,7 @@
               inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 
-/* הכפתור הפרוייקטים שלנו - שונה ל-absolute כדי להישאר רק במסך הזה */
+/* הכפתור הפרוייקטים שלנו - נשאר absolute כמו שהיה */
 .projectsButton {
   position: absolute;
   bottom: 40px;
