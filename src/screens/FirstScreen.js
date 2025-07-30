@@ -5,12 +5,18 @@ import image2 from "../images/תמונת פתיחה 2.png";
 import image3 from "../images/תמונת פתיחה 3.png";
 import image4 from "../images/תמונת פתיחה 4.png";
 import image5 from "../images/תמונת פתיחה 5.png";
+import Loader from '../components/loader/Loader';
 
 const ArchitectLanding = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [showContactForm, setShowContactForm] = useState(false);
+  
+  // ✅ state חדש לבדיקת טעינת התמונות
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [loadedImagesCount, setLoadedImagesCount] = useState(0);
+  
   const [formData, setFormData] = useState({
     fullName: '',
     phone: '',
@@ -18,7 +24,6 @@ const ArchitectLanding = () => {
     expansion: ''
   });
   
-  // ✅ הוספת state לולידציה ושליחה
   const [errors, setErrors] = useState({
     fullName: '',
     phone: '',
@@ -27,21 +32,64 @@ const ArchitectLanding = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  // ✅ הגדרות השרת - עודכן עם המייל שלך
   const serverUrl = "https://dynamic-server-dfc88e1f1c54.herokuapp.com/leads/newLead";
-  const reciver = "royshm22@gmail.com"; // ✅ עודכן למייל שלך
+  const reciver = "royshm22@gmail.com";
 
   const images = [image1, image2, image3, image4, image5];
 
+  // ✅ פונקציה לטעינת התמונות
   useEffect(() => {
-    setIsLoaded(true);
+    const preloadImages = () => {
+      let loadedCount = 0;
+      
+      images.forEach((imageSrc) => {
+        const img = new Image();
+        img.onload = () => {
+          loadedCount++;
+          setLoadedImagesCount(loadedCount);
+          
+          // כאשר כל התמונות נטענו
+          if (loadedCount === images.length) {
+            setImagesLoaded(true);
+            // עיכוב קטן לאפקט חלק
+            setTimeout(() => {
+              setIsLoaded(true);
+            }, 300);
+          }
+        };
+        
+        img.onerror = () => {
+          loadedCount++;
+          setLoadedImagesCount(loadedCount);
+          console.error(`Failed to load image: ${imageSrc}`);
+          
+          // גם אם יש שגיאה, ממשיכים (למקרה שיש תמונה שלא נטענת)
+          if (loadedCount === images.length) {
+            setImagesLoaded(true);
+            setTimeout(() => {
+              setIsLoaded(true);
+            }, 300);
+          }
+        };
+        
+        img.src = imageSrc;
+      });
+    };
+
+    preloadImages();
+  }, []);
+
+  // ✅ האפקט הקיים - יתחיל לרוץ רק אחרי שהתמונות נטענו
+  useEffect(() => {
+    if (!imagesLoaded) return; // לא מתחיל עד שהתמונות נטענו
+    
     const interval = setInterval(() => {
       if (!showContactForm) {
         handleNextSlide();
       }
     }, 6000);
     return () => clearInterval(interval);
-  }, [currentSlide, showContactForm]);
+  }, [currentSlide, showContactForm, imagesLoaded]);
 
   const handleNextSlide = () => {
     setIsTransitioning(true);
@@ -75,42 +123,33 @@ const ArchitectLanding = () => {
     }
   };
 
-  // ✅ פונקציית ולידציה עם push notifications
   const validateForm = () => {
     let valid = true;
     const newErrors = { fullName: '', phone: '', reason: '' };
 
-    // ולידציה לשם מלא
     if (!formData.fullName.trim()) {
       newErrors.fullName = 'נא להזין שם מלא';
-      // ✅ Push notification
       alert('נא להזין שם מלא');
       valid = false;
     } else if (formData.fullName.trim().length < 2) {
       newErrors.fullName = 'שם חייב להכיל לפחות 2 תווים';
-      // ✅ Push notification
       alert('שם חייב להכיל לפחות 2 תווים');
       valid = false;
     }
 
-    // ولידציה למספר טלפון (פורמט ישראלי)
     const phoneRegex = /^0(5\d|[23489])\d{7}$/;
     if (!formData.phone.trim()) {
       newErrors.phone = 'נא להזין מספר טלפון';
-      // ✅ Push notification
       alert('נא להזין מספר טלפון');
       valid = false;
     } else if (!phoneRegex.test(formData.phone.trim())) {
       newErrors.phone = 'נא להזין מספר טלפון תקין';
-      // ✅ Push notification
       alert('נא להזין מספר טלפון תקין');
       valid = false;
     }
 
-    // ולידציה לסיבת פנייה
     if (!formData.reason.trim()) {
       newErrors.reason = 'נא לבחור סיבת פנייה';
-      // ✅ Push notification
       alert('נא לבחור סיבת פנייה');
       valid = false;
     }
@@ -119,26 +158,22 @@ const ArchitectLanding = () => {
     return valid;
   };
 
-  // ✅ פונקציית שליחת הטופס - עודכנה למייל שלך ועם ולידציה
   const handleContactSubmit = async () => {
-    // בדיקת ולידציה לפני שליחה
     if (!validateForm()) {
       return;
     }
 
     setIsSubmitting(true);
 
-    // ✅ נתוני השרת - ההרחבה מתווספת ל-reason כמו אצל עידית
     const serverData = {
       name: formData.fullName,
       phone: formData.phone,
-      email: "", // לא נדרש בטופס אבל כלול במבנה ה-API
+      email: "",
       reason: formData.expansion ? `${formData.reason} - ${formData.expansion}` : formData.reason,
       reciver: reciver
     };
 
     try {
-      // שליחה לשרת
       const serverResponse = await fetch(serverUrl, {
         method: "POST",
         headers: {'Content-Type': 'application/json'},
@@ -149,7 +184,6 @@ const ArchitectLanding = () => {
         setIsSubmitting(false);
         setSubmitted(true);
         
-        // איפוס הטופס אחרי שליחה מוצלחת
         setTimeout(() => {
           setFormData({
             fullName: '',
@@ -175,7 +209,6 @@ const ArchitectLanding = () => {
     }
   };
 
-  // ✅ עודכן לניקוי שגיאות בזמן הקלדה
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -183,7 +216,6 @@ const ArchitectLanding = () => {
       [name]: value
     });
     
-    // ניקוי שגיאות כשהמשתמש מתחיל להקליד
     if (errors[name]) {
       setErrors({
         ...errors,
@@ -191,6 +223,11 @@ const ArchitectLanding = () => {
       });
     }
   };
+
+  // ✅ אם התמונות עדיין לא נטענו - מציג את הלודר
+  if (!imagesLoaded) {
+    return <Loader />;
+  }
 
   return (
     <>
@@ -261,7 +298,7 @@ const ArchitectLanding = () => {
         </div>
       </div>
 
-      {/* ✅ Contact Form Overlay - עודכן עם ולידציה */}
+      {/* Contact Form Overlay */}
       <div className={`${styles.contactOverlay} ${showContactForm ? styles.active : ''}`}>
         <div className={styles.contactForm}>
           <button className={styles.closeButton} onClick={() => setShowContactForm(false)}>
@@ -279,7 +316,6 @@ const ArchitectLanding = () => {
               placeholder="השם שלכם"
               disabled={isSubmitting || submitted}
             />
-            {/* ✅ הודעת שגיאה */}
             {errors.fullName && <p className={styles.errorText}>{errors.fullName}</p>}
           </div>
 
@@ -294,7 +330,6 @@ const ArchitectLanding = () => {
               placeholder="050-1234567"
               disabled={isSubmitting || submitted}
             />
-            {/* ✅ הודעת שגיאה */}
             {errors.phone && <p className={styles.errorText}>{errors.phone}</p>}
           </div>
 
@@ -312,7 +347,6 @@ const ArchitectLanding = () => {
               <option value="קניתי דירה מקבלן">קניתי דירה מקבלן</option>
               <option value="אחר">אחר</option>
             </select>
-            {/* ✅ הודעת שגיאה */}
             {errors.reason && <p className={styles.errorText}>{errors.reason}</p>}
           </div>
 
@@ -329,7 +363,6 @@ const ArchitectLanding = () => {
           </div>
 
           <div className={styles.formButtons}>
-            {/* ✅ כפתור עודכן עם מצבי שליחה ושם "רועי" */}
             <button 
               className={`${styles.submitButton} ${isSubmitting ? styles.submitting : ''} ${submitted ? styles.submitted : ''}`}
               onClick={handleContactSubmit}
